@@ -54,17 +54,17 @@ namespace Pablo_Palacios_Unit3_IT481
             cnn.Open();
             string countQuery = "Select companyname from customers;";
             SqlCommand cmd = new SqlCommand(countQuery, cnn);
-            dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
+            try
             {
-                try
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
                 {
                     names = names + dataReader.GetValue(0) + "\n";
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine (ex.Message);
             }
 
             return names;
